@@ -132,18 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38a115d9bfeae349898fa8c0023cc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!143 &49134110 stripped
-CharacterController:
-  m_CorrespondingSourceObject: {fileID: 7261276999743437195, guid: aee36ff1e1860b1479e4003bd2138815,
-    type: 3}
-  m_PrefabInstance: {fileID: 1273416148}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &49134111 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7261276999519850135, guid: aee36ff1e1860b1479e4003bd2138815,
-    type: 3}
-  m_PrefabInstance: {fileID: 1273416148}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &49134112 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7261276999527604509, guid: aee36ff1e1860b1479e4003bd2138815,
@@ -162,7 +150,6 @@ GameObject:
   - component: {fileID: 88112546}
   - component: {fileID: 88112545}
   - component: {fileID: 88112544}
-  - component: {fileID: 88112543}
   - component: {fileID: 88112542}
   m_Layer: 0
   m_Name: Main Camera
@@ -192,42 +179,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88112540}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eda68292a5a03424db2b11534fc84e76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathCreator: {fileID: 0}
-  distanceTravelled: 0
-  endOfPathInstruction: 2
-  player: {fileID: 49134112}
-  cam: {fileID: 88112544}
-  move: {fileID: 49134108}
-  follower: {fileID: 88112543}
-  colliding: 0
---- !u!114 &88112543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 88112540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16d6713ed46ec8d4699bdfb03922b3f9, type: 3}
+  m_Script: {fileID: 11500000, guid: a36a3afa36c015b45b4e9925640b73cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathCreator: {fileID: 496211903}
-  distanceTravelled: 0
-  endOfPathInstruction: 2
   player: {fileID: 49134112}
-  cam: {fileID: 88112544}
-  move: {fileID: 49134108}
-  cc: {fileID: 49134110}
-  freeCam: {fileID: 88112544}
-  splineCam: {fileID: 88112543}
-  SplinePos: {fileID: 88112542}
-  anim: {fileID: 49134111}
+  script: {fileID: 49134108}
 --- !u!114 &88112544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,90 +346,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256537937}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &496211902
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 496211904}
-  - component: {fileID: 496211903}
-  m_Layer: 0
-  m_Name: Spline Path
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &496211903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496211902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e5ac92bc18f545cc84cd886ece82b4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  editorData:
-    _bezierPath:
-      points:
-      - {x: -0.027162313, y: -0.0000011697412, z: 0.04089737}
-      - {x: 0.028918743, y: -0.00000087730587, z: 12.089266}
-      - {x: 0.14108086, y: -0.0000002924353, z: 36.186005}
-      - {x: 0.19716191, y: 0, z: 48.23437}
-      isClosed: 0
-      space: 0
-      controlMode: 3
-      autoControlLength: 0.3
-      boundsUpToDate: 0
-      bounds:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-      perAnchorNormalsAngle:
-      - 0
-      - 0
-      globalNormalsAngle: 90
-      flipNormals: 0
-    vertexPathUpToDate: 1
-    vertexPathMaxAngleError: 0.3
-    vertexPathMinVertexSpacing: 0.01
-    showTransformTool: 1
-    showPathBounds: 0
-    showPerSegmentBounds: 0
-    displayAnchorPoints: 1
-    displayControlPoints: 1
-    bezierHandleScale: 1
-    globalDisplaySettingsFoldout: 0
-    keepConstantHandleSize: 0
-    showNormalsInVertexMode: 0
-    showBezierPathInVertexMode: 0
-    showDisplayOptions: 0
-    showPathOptions: 1
-    showVertexPathDisplayOptions: 0
-    showVertexPathOptions: 1
-    showNormals: 1
-    showNormalsHelpInfo: 0
-    tabIndex: 0
-  initialized: 1
---- !u!4 &496211904
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496211902}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -22.21}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &791001783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,7 +938,7 @@ PrefabInstance:
     - target: {fileID: 7261276999527604509, guid: aee36ff1e1860b1479e4003bd2138815,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.32
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 7261276999527604509, guid: aee36ff1e1860b1479e4003bd2138815,
         type: 3}

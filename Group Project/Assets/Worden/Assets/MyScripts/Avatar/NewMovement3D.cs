@@ -54,7 +54,7 @@ public class NewMovement3D : MonoBehaviour
     float minTurnSpeed = 15;
     float maxTurnSpeed = 40;
     float jumpTimer = 0.0f;
-    public bool inSpline = false;
+    public bool inSpline = true;
 
     public bool headCollision = false;
 
@@ -131,10 +131,15 @@ public class NewMovement3D : MonoBehaviour
             if(inSpline)
             {
                 input = new Vector2(Input.GetAxis("Horizontal"), 0);
+                minTurnSpeed = 100;
+                maxTurnSpeed = 100;
+
             }
             else
             {
                 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+                minTurnSpeed = 15;
+                maxTurnSpeed = 40;
             }
            
             input = Vector2.ClampMagnitude(input, 1);
@@ -446,9 +451,6 @@ public class NewMovement3D : MonoBehaviour
             if (speedBoost)
             {
                 playerSpeed = 12;
-
-
-
                 speedTimer += Time.deltaTime;
             }
 
@@ -468,12 +470,13 @@ public class NewMovement3D : MonoBehaviour
                 numJumps = 2;
 
                 jumpPickupTimer += Time.deltaTime;
+                print(jumpPickupTimer);
             }
 
             if (jumpPickupTimer > 10.0f)
             {
                 numJumps = 1;
-                jumpTimer = 0.0f;
+                jumpPickupTimer = 0.0f;
                 doubleJump = false;
 
             }

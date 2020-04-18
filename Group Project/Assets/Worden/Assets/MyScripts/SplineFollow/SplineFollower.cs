@@ -34,33 +34,35 @@ public class SplineFollower : MonoBehaviour
     {
         Vector3 midPlayer = new Vector3 (player.position.x, player.position.y + 1.3f, player.position.z);
 
-       // RaycastHit hit;
+         RaycastHit hit;
 
-        /* if (Physics.Raycast(midPlayer, player.transform.TransformDirection(Vector3.forward), out hit, 10))
+         if (Physics.Raycast(midPlayer, player.transform.TransformDirection(Vector3.forward), out hit, 1))
          {
-             //  distanceTravelled += 0;
-             transform.position = player.localPosition + new Vector3(20, 2, 0);
-
-             SplinePos.colliding = true;
-
-
-
+             distanceTravelled += 0;
+         //    transform.position = player.localPosition + new Vector3(20, 2, 0);
+            print("colliding");
+            SplinePos.colliding = true;
          }
-         else
-         {
-         //    distanceTravelled += move.input.x * move.playerSpeed * Time.deltaTime;
-             transform.position = player.localPosition + new Vector3(20, 2, 0);
-             SplinePos.colliding = false;
-         }
-        */
+        else
+        {
+            distanceTravelled += move.input.x * move.playerSpeed * Time.deltaTime;
+            SplinePos.colliding = false;
+        }
+         
+         
+           
+         
+        
+
+
         transform.position = player.localPosition + new Vector3(20, 2, 0);
-        //  print(distanceTravelled);
+        //print(distanceTravelled);
 
         Vector3 spline = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
         player.position = new Vector3(spline.x, player.position.y, spline.z);
 
 
-        // transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled,endOfPathInstruction);
+       
 
 
         //camera rotation
@@ -75,7 +77,7 @@ public class SplineFollower : MonoBehaviour
         
        
        
-        print(distanceTravelled);
+   
 
         //when leaving spline area
         /*  collision.back = false;

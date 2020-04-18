@@ -35,6 +35,7 @@ public class newCamera : MonoBehaviour
     private void OnEnable()
     {
         heading = transform.rotation.eulerAngles.y;
+        playerScript.inSpline = false;
     }
 
     void LateUpdate()

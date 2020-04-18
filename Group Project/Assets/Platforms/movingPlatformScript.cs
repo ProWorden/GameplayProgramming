@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class movingPlatformScript : MonoBehaviour
 {
-    public Vector3[] points;
+    public GameObject[] objects;
+
+    private List<Vector3> points = new List<Vector3>();
+
+    //public Vector3[] points;
 
     public int point_number = 0;
 
@@ -21,7 +25,16 @@ public class movingPlatformScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(points.Length > 0)
+        if(objects.Length > 0)
+        {
+            for (int i = 0; i < objects.Length; i++)
+            {
+                points.Add(objects[i].transform.position);
+            }
+                
+        }
+
+        if(points.Count > 0)
         {
             current_target = points[0];
 
@@ -67,7 +80,7 @@ public class movingPlatformScript : MonoBehaviour
     public void NextPlatform()
     {
         point_number++;
-        if(point_number >= points.Length)
+        if(point_number >= points.Count)
         {
             point_number = 0;
         }

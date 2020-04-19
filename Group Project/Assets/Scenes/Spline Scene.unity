@@ -1186,7 +1186,7 @@ PrefabInstance:
     - target: {fileID: 7112740500504216621, guid: f8a721d01c3cb2f4b89f0e673d607a69,
         type: 3}
       propertyPath: scene_to_load
-      value: SampleScene
+      value: Main Islands
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a721d01c3cb2f4b89f0e673d607a69, type: 3}

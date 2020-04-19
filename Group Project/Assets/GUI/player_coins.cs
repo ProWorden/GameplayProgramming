@@ -13,13 +13,13 @@ public class player_coins : MonoBehaviour
     void Start()
     {
         
-        coin_count.text = "x " + coins;
+        coin_count.text = "" + coins;
     }
 
     // Update is called once per frame
     void Update()
     {
-        coin_count.text = "x " + coins;
+        coin_count.text = "" + coins;
     }
 
     public void addCoin()

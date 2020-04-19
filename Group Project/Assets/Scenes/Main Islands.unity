@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 3407097}
   - component: {fileID: 3407096}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Heart3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 425, y: 356.99994}
+  m_AnchoredPosition: {x: -640, y: 356.99994}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3407096
@@ -3044,7 +3044,9 @@ MonoBehaviour:
   objects:
   - {fileID: 856468443}
   - {fileID: 46317256}
+  points: []
   point_number: 0
+  current_target: {x: 0, y: 0, z: 0}
   tolerance: 0
   speed: 5
   delay_time: 2
@@ -3685,7 +3687,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683904727}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -63.9, y: -4.01, z: 21.556824}
+  m_LocalPosition: {x: 157.34, y: -4.01, z: -20.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 774230310}
@@ -3803,7 +3805,7 @@ GameObject:
   - component: {fileID: 701443712}
   - component: {fileID: 701443711}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Heart2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3825,7 +3827,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 555, y: 356.99994}
+  m_AnchoredPosition: {x: -770, y: 356.99994}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &701443711
@@ -4588,7 +4590,9 @@ MonoBehaviour:
   - {fileID: 1825967620}
   - {fileID: 617389094}
   - {fileID: 1254795568}
+  points: []
   point_number: 0
+  current_target: {x: 0, y: 0, z: 0}
   tolerance: 0
   speed: 5
   delay_time: 2
@@ -4677,7 +4681,7 @@ GameObject:
   - component: {fileID: 780677572}
   - component: {fileID: 780677571}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Heart1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4699,7 +4703,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 685, y: 357}
+  m_AnchoredPosition: {x: -900, y: 357}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &780677571
@@ -6104,7 +6108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 425, y: 230}
+  m_AnchoredPosition: {x: -640, y: 230}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246772287
@@ -6363,7 +6367,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 580, y: 240}
+  m_AnchoredPosition: {x: -577, y: 240}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1341249622
@@ -6379,7 +6383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

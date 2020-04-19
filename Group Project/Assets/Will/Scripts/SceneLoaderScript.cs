@@ -11,7 +11,7 @@ public class SceneLoaderScript : MonoBehaviour
     float transitionTime = 1f;
     IEnumerator ChangeScene(string scene)
     {
-        transition.SetTrigger("StartScene");
+        transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(scene);
     }

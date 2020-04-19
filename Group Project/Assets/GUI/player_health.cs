@@ -49,4 +49,14 @@ public class player_health : MonoBehaviour
             }
         }
     }
+
+    public void addHealth(int health_to_add)
+    {
+        health += health_to_add;
+    }
+
+    public void removeHealth()
+    {
+        health--;
+    }
 }

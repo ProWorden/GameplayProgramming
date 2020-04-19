@@ -316,7 +316,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &431335890
 GameObject:
@@ -356,7 +356,9 @@ MonoBehaviour:
   - {fileID: 1688862214}
   - {fileID: 2018261245}
   - {fileID: 773899550}
+  points: []
   point_number: 0
+  current_target: {x: 0, y: 0, z: 0}
   tolerance: 0
   speed: 4
   delay_time: 2
@@ -836,7 +838,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &915037131
 GameObject:
@@ -887,7 +889,9 @@ MonoBehaviour:
   objects:
   - {fileID: 402894670}
   - {fileID: 1996620087}
+  points: []
   point_number: 0
+  current_target: {x: 0, y: 0, z: 0}
   tolerance: 0
   speed: 4
   delay_time: 0.1
@@ -1227,7 +1231,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2018261245
 GameObject:
@@ -1319,7 +1323,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3952202655784712774
 MonoBehaviour:

@@ -6,13 +6,13 @@ public class movingPlatformScript : MonoBehaviour
 {
     public GameObject[] objects;
 
-    private List<Vector3> points = new List<Vector3>();
+    public List<Vector3> points = new List<Vector3>();
 
     //public Vector3[] points;
 
     public int point_number = 0;
 
-    private Vector3 current_target;
+    public Vector3 current_target;
 
     public float tolerance;
     public float speed;

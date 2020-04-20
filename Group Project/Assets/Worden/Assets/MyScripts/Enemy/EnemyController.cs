@@ -23,6 +23,9 @@ public class EnemyController : MonoBehaviour
     public NewMovement3D player;
     public bool attacked = false;
 
+    public float waitTimer = 0.0f;
+    public Transform spawn;
+
     int formsLeft = 2;
     void Start()
     {
@@ -37,7 +40,9 @@ public class EnemyController : MonoBehaviour
 
         if(distance <=lookRadius)
         {
-            if(delay)
+            waitTimer = 0;
+
+            if (delay)
             {
                 delayTimer += Time.deltaTime;
                 if (delayTimer > 0.2)
@@ -52,6 +57,23 @@ public class EnemyController : MonoBehaviour
                 agent.SetDestination(target.position);
             }
             
+        }
+        else
+        {
+
+
+
+            waitTimer += Time.deltaTime;
+            if (waitTimer >= 3)
+            {
+                waitTimer = 3;
+                agent.SetDestination(spawn.position);
+            }
+            else
+            {
+                agent.SetDestination(transform.position);
+            }
+
         }
 
         if (distance <= agent.stoppingDistance)
@@ -118,7 +140,6 @@ public class EnemyController : MonoBehaviour
             hit = true;
             
         }
-
         else if(other.CompareTag("Player"))
         {
             player.hitBack = 0;

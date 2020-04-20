@@ -31,7 +31,7 @@ public class NewMovement3D : MonoBehaviour
     Renderer render;
     public Material mat1;
     public Material mat2;
-    Transform enemy;
+    public Transform enemy;
 
     CapsuleCollider cap;
    
@@ -97,7 +97,11 @@ public class NewMovement3D : MonoBehaviour
         if(other.CompareTag("Enemy"))
         {
             Debug.Log("Enemy hit you");
+            
             enemy = other.transform;
+
+           
+
         }
     }
  
@@ -123,409 +127,408 @@ public class NewMovement3D : MonoBehaviour
        
         
         cc.Move(velocity * Time.deltaTime);
-          
-        
+         
+    }
 
-        void getInput()
+    void getInput()
+    {
+        if (inSpline)
         {
-            if(inSpline)
+            input = new Vector2(Input.GetAxis("Horizontal"), 0);
+            minTurnSpeed = 100;
+            maxTurnSpeed = 100;
+
+        }
+        else
+        {
+            input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            minTurnSpeed = 15;
+            maxTurnSpeed = 40;
+        }
+
+        input = Vector2.ClampMagnitude(input, 1);
+    }
+    void calculateCameraPosition()
+    {
+
+        camF = cam.forward;
+        camR = cam.right;
+
+        //ignore angle of camera for movement
+        camF.y = 0;
+        camR.y = 0;
+        camF = camF.normalized;
+        camR = camR.normalized;
+
+
+    }
+    void movement()
+    {
+        if (!hitSwitch)
+        {
+            //moving relative to camera direction
+
+            intent = camF * input.y + camR * input.x;
+
+            ts = velocity.magnitude / playerSpeed;
+            turnSpeed = Mathf.Lerp(maxTurnSpeed, minTurnSpeed, ts);
+
+            if (input.magnitude > 0)
             {
-                input = new Vector2(Input.GetAxis("Horizontal"), 0);
-                minTurnSpeed = 100;
-                maxTurnSpeed = 100;
+                anim.SetFloat("Velocity", playerSpeed);
+                anim.SetBool("Moving", true);
+
+
+                Quaternion rot = Quaternion.LookRotation(intent);
+                transform.rotation = Quaternion.Lerp(transform.rotation, rot, turnSpeed * Time.deltaTime);
+
 
             }
             else
             {
-                input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-                minTurnSpeed = 15;
-                maxTurnSpeed = 40;
+                anim.SetFloat("Velocity", 0);
+                anim.SetBool("Moving", false);
             }
-           
-            input = Vector2.ClampMagnitude(input, 1);
+
+            velocityXZ = velocity;
+            velocityXZ.y = 0;
+            velocityXZ = Vector3.Lerp(velocityXZ, transform.forward * input.magnitude * playerSpeed, playerAcceleration * Time.deltaTime);
+            velocity = new Vector3(velocityXZ.x, velocity.y, velocityXZ.z);
         }
-        void calculateCameraPosition()
+
+    }
+
+    void addGravity()
+    {
+        if (grounded)
+        {
+            velocity.y = -5f;
+
+        }
+        else
+        {
+            velocity.y += gravityMagnitude * Time.deltaTime;
+            velocity.y = Mathf.Clamp(velocity.y, terminalVelocity, 20);
+        }
+
+    }
+
+    void calculateGround()
+    {
+
+
+        if (cc.isGrounded)
         {
 
-            camF = cam.forward;
-            camR = cam.right;
-
-            //ignore angle of camera for movement
-            camF.y = 0;
-            camR.y = 0;
-            camF = camF.normalized;
-            camR = camR.normalized;
 
 
-        }
-        void movement()
-        {
-            if(!hitSwitch)
+
+            grounded = true;
+            jumped = false;
+
+            if (airTimer > 0.3)
             {
-                //moving relative to camera direction
+                airTimer = 0;
 
-                intent = camF * input.y + camR * input.x;
+            }
+            anim.SetBool("Landed", true);
+            anim.SetFloat("AirTimer", airTimer);
+            anim.SetBool("Jumping", false);
 
-                ts = velocity.magnitude / playerSpeed;
-                turnSpeed = Mathf.Lerp(maxTurnSpeed, minTurnSpeed, ts);
 
-                if (input.magnitude > 0)
+
+        }
+        else
+        {
+
+            grounded = false;
+
+            airTimer += Time.deltaTime;
+            anim.SetFloat("AirTimer", airTimer);
+            anim.SetBool("Landed", false);
+
+            if (airTimer > 0.3)
+            {
+
+                anim.SetBool("Landed", false);
+            }
+        }
+    }
+
+    void jump()
+    {
+        if (grounded)
+        {
+            jumpCounter = 0;
+            anim.SetBool("DoubleJumped", false);
+        }
+
+        if (doubleJumped)
+        {
+            DoubleJumpTimer += Time.deltaTime;
+            anim.SetFloat("DJTimer", DoubleJumpTimer);
+        }
+
+        if (DoubleJumpTimer > 0.75)
+        {
+            DoubleJumpTimer = 0f;
+            doubleJumped = false;
+            anim.SetBool("DoubleJumped", false);
+
+        }
+
+
+        if (jumpCounter < numJumps)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                jumped = true;
+
+                if (jumpCounter == 0)
                 {
-                    anim.SetFloat("Velocity", playerSpeed);
-                    anim.SetBool("Moving", true);
-
-
-                    Quaternion rot = Quaternion.LookRotation(intent);
-                    transform.rotation = Quaternion.Lerp(transform.rotation, rot, turnSpeed * Time.deltaTime);
-
-
+                    velocity.y = jumpForce;
                 }
                 else
                 {
-                    anim.SetFloat("Velocity", 0);
-                    anim.SetBool("Moving", false);
+                    velocity.y = jumpForceTwo;
+                    anim.SetBool("DoubleJumped", true);
+                    doubleJumped = true;
                 }
 
-                velocityXZ = velocity;
-                velocityXZ.y = 0;
-                velocityXZ = Vector3.Lerp(velocityXZ, transform.forward * input.magnitude * playerSpeed, playerAcceleration * Time.deltaTime);
-                velocity = new Vector3(velocityXZ.x, velocity.y, velocityXZ.z);
-            }
-          
-        }
+                jumpCounter++;
 
-        void addGravity()
-        {
-            if (grounded)
-            {
-                velocity.y = -5f;
-               
+
             }
-            else
-            {
-                velocity.y += gravityMagnitude * Time.deltaTime;
-                velocity.y = Mathf.Clamp(velocity.y, terminalVelocity, 20);
-            }
+
 
         }
 
-        void calculateGround()
+        if (cc.collisionFlags == CollisionFlags.Above)
         {
-          
+            anim.SetBool("Jumping", false);
+            anim.SetBool("DoubleJumped", false);
+            jumpTimer = 0f;
+            jumped = false;
+        }
 
-            if (cc.isGrounded)
+        if (jumped)
+        {
+            jumpTimer += Time.deltaTime;
+            if (jumpTimer > 0.05f)
             {
-
-
-
-                
-                grounded = true;
-                jumped = false;
-
-                if (airTimer > 0.3)
-                {
-                    airTimer = 0;
-
-                }
-                anim.SetBool("Landed", true);
-                anim.SetFloat("AirTimer", airTimer);
-                anim.SetBool("Jumping", false);
-
-
-
-            }
-            else
-            {
-
-                grounded = false;
-
-                airTimer += Time.deltaTime;
-                anim.SetFloat("AirTimer", airTimer);
-                anim.SetBool("Landed", false);
-
-                if (airTimer > 0.3)
-                {
-
-                    anim.SetBool("Landed", false);
-                }
+                anim.SetBool("Jumping", true);
             }
         }
 
-        void jump()
+    }
+
+    void attack()
+    {
+        if (Input.GetButtonDown("Fire1") && !hitSwitch)
         {
-            if (grounded)
+
+            if (!grounded)
             {
-                jumpCounter = 0;
-                anim.SetBool("DoubleJumped", false);
-            }
-
-            if (doubleJumped)
-            {
-                DoubleJumpTimer += Time.deltaTime;
-                anim.SetFloat("DJTimer", DoubleJumpTimer);
-            }
-
-            if (DoubleJumpTimer > 0.75)
-            {
-                DoubleJumpTimer = 0f;
-                doubleJumped = false;
-                anim.SetBool("DoubleJumped", false);
-
-            }
-
-
-            if (jumpCounter < numJumps)
-            {
-                if (Input.GetButtonDown("Jump"))
+                if (jumpKicked == false)
                 {
-                    jumped = true;
-
-                    if (jumpCounter == 0)
-                    {
-                        velocity.y = jumpForce;
-                    }
-                    else
-                    {
-                        velocity.y = jumpForceTwo;
-                        anim.SetBool("DoubleJumped", true);
-                        doubleJumped = true;
-                    }
-
-                    jumpCounter++;
-
-
+                    attackTimer -= 0.3f;
                 }
 
+                anim.SetBool("JumpKicked", true);
+                RightFoot.enabled = true;
+                cap.enabled = false;
+                jumpKicked = true;
 
             }
-
-            if (cc.collisionFlags == CollisionFlags.Above)
-            {
-                anim.SetBool("Jumping", false);
-                anim.SetBool("DoubleJumped", false);
-                jumpTimer = 0f;
-                jumped = false;
-            }
-
-            if (jumped)
-            {
-                jumpTimer += Time.deltaTime;
-                if (jumpTimer > 0.05f)
-                {
-                    anim.SetBool("Jumping", true);
-                }
-            }
-
-        }
-
-        void attack()
-        {
-            if (Input.GetButtonDown("Fire1") &&!hitSwitch)
+            else if (input.magnitude == 0)
             {
 
-                if (!grounded)
+                attackCounter++;
+
+                if (attackCounter == 1)
                 {
-                    if (jumpKicked == false)
-                    {
-                        attackTimer -= 0.3f;
-                    }
-
-                    anim.SetBool("JumpKicked", true);
-                    RightFoot.enabled = true;
-                    cap.enabled = false;
-                    jumpKicked = true;
-
+                    LeftHand.enabled = true;
+                    RightHand.enabled = false;
                 }
-                else if (input.magnitude == 0)
+                else if (attackCounter == 2)
                 {
-
-                    attackCounter++;
-
-                    if (attackCounter == 1)
-                    {
-                        LeftHand.enabled = true;
-                        RightHand.enabled = false;
-                    }
-                    else if(attackCounter == 2)
-                    {
-                        RightHand.enabled = true;
-                        LeftHand.enabled = false;
-                    }
-                    else if(attackCounter >= 3)
-                    {
-                        LeftHand.enabled = true;
-                        RightHand.enabled = false;
-                    }
-                    else if(attackCounter == 0)
-                    {
-                        LeftHand.enabled = false;
-                        RightHand.enabled = false;
-                    }
-
-
-                    anim.SetInteger("AttackCounter", attackCounter);
-
-                    if (attackCounter < 3)
-                    {
-                        
-                        attackTimer -= 0.45f;
-                    }
-
-
-
-
+                    RightHand.enabled = true;
+                    LeftHand.enabled = false;
                 }
-                else 
+                else if (attackCounter >= 3)
                 {
-                    if (kicked == false)
-                    {
-                        attackTimer -= 0.8f;
-                    }
-
-                    kicked = true;
-                    cap.enabled = false;
-                    LeftFoot.enabled = true;
-                    anim.SetBool("Kicked", true);
-
+                    LeftHand.enabled = true;
+                    RightHand.enabled = false;
+                }
+                else if (attackCounter == 0)
+                {
+                    LeftHand.enabled = false;
+                    RightHand.enabled = false;
                 }
 
-
-
-            }
-
-            if (attackCounter > 0 || kicked || jumpKicked)
-            {
-                attackTimer += Time.deltaTime;
-
-
-            }
-
-            if (attackTimer >= 0)
-            {
-                attackTimer = 0;
-                attackCounter = 0;
-
-                LeftHand.enabled = false;
-                RightHand.enabled = false;
-
-                cap.enabled = true;
 
                 anim.SetInteger("AttackCounter", attackCounter);
 
-                kicked = false;
-                LeftFoot.enabled = false;
-                anim.SetBool("Kicked", false);
-
-                jumpKicked = false;
-                RightFoot.enabled = false;
-                anim.SetBool("JumpKicked", false);
-
-            }
-
-
-
-
-
-        }
-
-       void jumpCollision()
-        {
-            if (cc.collisionFlags == CollisionFlags.Above)
-            {
-                 
-                print("Touching Ceiling!");
-                if (!grounded && !Input.GetButtonDown("Jump") && velocity.y > 0 )
-
+                if (attackCounter < 3)
                 {
-                   
-                    velocity.y = -velocity.y * 0.2f;
-                   
+
+                    attackTimer -= 0.45f;
                 }
-                
 
-            }
-        }
 
-        void SpeedPickup()
-        {
-            if (speedBoost)
-            {
-                playerSpeed = 12;
-                speedTimer += Time.deltaTime;
-            }
 
-            if (speedTimer > 10.0f)
-            {
-                playerSpeed = 8;
-                speedTimer = 0;
-                speedBoost = false;
 
-            }
-        }
-
-        void JumpPickup()
-        {
-            if (doubleJump)
-            {
-                numJumps = 2;
-
-                jumpPickupTimer += Time.deltaTime;
-                print(jumpPickupTimer);
-            }
-
-            if (jumpPickupTimer > 10.0f)
-            {
-                numJumps = 1;
-                jumpPickupTimer = 0.0f;
-                doubleJump = false;
-
-            }
-
-        }
-
-        void hitButton()
-        {
-            if(hitSwitch)
-            {
-               
-                cc.enabled = false;
-                anim.SetBool("HitSwitch", true);
             }
             else
             {
-                cc.enabled = true;
-                anim.SetBool("HitSwitch", false);
+                if (kicked == false)
+                {
+                    attackTimer -= 0.8f;
+                }
+
+                kicked = true;
+                cap.enabled = false;
+                LeftFoot.enabled = true;
+                anim.SetBool("Kicked", true);
 
             }
+
+
+
         }
 
-        void TakeDamage()
+        if (attackCounter > 0 || kicked || jumpKicked)
+        {
+            attackTimer += Time.deltaTime;
+
+
+        }
+
+        if (attackTimer >= 0)
+        {
+            attackTimer = 0;
+            attackCounter = 0;
+
+            LeftHand.enabled = false;
+            RightHand.enabled = false;
+
+            cap.enabled = true;
+
+            anim.SetInteger("AttackCounter", attackCounter);
+
+            kicked = false;
+            LeftFoot.enabled = false;
+            anim.SetBool("Kicked", false);
+
+            jumpKicked = false;
+            RightFoot.enabled = false;
+            anim.SetBool("JumpKicked", false);
+
+        }
+
+
+
+
+
+    }
+
+    void jumpCollision()
+    {
+        if (cc.collisionFlags == CollisionFlags.Above)
         {
 
-          
+            print("Touching Ceiling!");
+            if (!grounded && !Input.GetButtonDown("Jump") && velocity.y > 0)
 
-            hitBack += 3 * Time.deltaTime;
-            if(enemy != null)
             {
-                transform.position = Vector3.Lerp(transform.position, transform.position + (0.5f * enemy.transform.forward), hitBack);
-            }
-           
-            render.material = mat2;
-            if (hitBack >= 0.5)
-            {
-                render.material = mat1;
+
+                velocity.y = -velocity.y * 0.2f;
+
             }
 
 
-            if (hitBack >= 1)
-            {
-                hitBack = 1;
-                hitPlayer = false;
-               
-              
-            }
+        }
+    }
+
+    void SpeedPickup()
+    {
+        if (speedBoost)
+        {
+            playerSpeed = 12;
+            speedTimer += Time.deltaTime;
         }
 
-      
+        if (speedTimer > 10.0f)
+        {
+            playerSpeed = 8;
+            speedTimer = 0;
+            speedBoost = false;
+
+        }
     }
+
+    void JumpPickup()
+    {
+        if (doubleJump)
+        {
+            numJumps = 2;
+
+            jumpPickupTimer += Time.deltaTime;
+            print(jumpPickupTimer);
+        }
+
+        if (jumpPickupTimer > 10.0f)
+        {
+            numJumps = 1;
+            jumpPickupTimer = 0.0f;
+            doubleJump = false;
+
+        }
+
+    }
+
+    void hitButton()
+    {
+        if (hitSwitch)
+        {
+
+            cc.enabled = false;
+            anim.SetBool("HitSwitch", true);
+        }
+        else
+        {
+            cc.enabled = true;
+            anim.SetBool("HitSwitch", false);
+
+        }
+    }
+
+    void TakeDamage()
+    {
+
+
+
+        hitBack += 3 * Time.deltaTime;
+        if (enemy != null)
+        {
+            print("hello");
+            transform.position = Vector3.Lerp(transform.position, transform.position + (0.5f * enemy.transform.forward), hitBack);
+        }
+
+        render.material = mat2;
+        if (hitBack >= 0.5)
+        {
+            render.material = mat1;
+        }
+
+
+        if (hitBack >= 1)
+        {
+            hitBack = 1;
+            hitPlayer = false;
+
+
+        }
+    }
+
 }

@@ -16,7 +16,8 @@ public class player_health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = globalControl.Instance.playerHealth;
+        numOfHearts = globalControl.Instance.numberOfHearts;
     }
 
     // Update is called once per frame
@@ -58,5 +59,11 @@ public class player_health : MonoBehaviour
     public void removeHealth()
     {
         health--;
+    }
+
+    private void OnDestroy()
+    {
+        globalControl.Instance.numberOfHearts = numOfHearts;
+        globalControl.Instance.playerHealth = health;
     }
 }

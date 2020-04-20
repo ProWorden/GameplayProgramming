@@ -12,7 +12,8 @@ public class player_coins : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        coins = globalControl.Instance.coins;
+
         coin_count.text = "" + coins;
     }
 
@@ -25,5 +26,10 @@ public class player_coins : MonoBehaviour
     public void addCoin()
     {
         coins++;
+    }
+
+    private void OnDestroy()
+    {
+        globalControl.Instance.coins = coins;
     }
 }

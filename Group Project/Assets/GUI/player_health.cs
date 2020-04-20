@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class player_health : MonoBehaviour
 {
-
     public int health;
     public int numOfHearts;
 
@@ -16,12 +15,17 @@ public class player_health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = globalControl.Instance.playerHealth;
+        numOfHearts = globalControl.Instance.numberOfHearts;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown( KeyCode.Backspace))
+        {
+            removeHealth();
+        }
 
         if(health > numOfHearts)
         {
@@ -58,5 +62,11 @@ public class player_health : MonoBehaviour
     public void removeHealth()
     {
         health--;
+    }
+
+    private void OnDestroy()
+    {
+        globalControl.Instance.playerHealth = health;
+        globalControl.Instance.numberOfHearts = numOfHearts;
     }
 }

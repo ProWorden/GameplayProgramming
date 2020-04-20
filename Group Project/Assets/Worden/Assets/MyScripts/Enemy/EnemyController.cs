@@ -26,12 +26,18 @@ public class EnemyController : MonoBehaviour
     public float waitTimer = 0.0f;
     public Transform spawn;
 
+    public player_health playerHP;
+
+    bool removePlayerHealth = false;
+
     int formsLeft = 2;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         render = GetComponent<Renderer>();
     }
+
+    
 
    
     void Update()
@@ -92,7 +98,7 @@ public class EnemyController : MonoBehaviour
             {
                 render.material = mat1;
             }
-
+         
 
             if(hitBack >= 1)
             {
@@ -131,6 +137,18 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position,lookRadius);
     }
 
+    private void LateUpdate()
+    {
+        if (removePlayerHealth &&player.hitBack >=1)
+        {
+            playerHP.removeHealth();
+            removePlayerHealth = false;
+        }
+    }
+
+
+
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Attacked"))
@@ -142,7 +160,16 @@ public class EnemyController : MonoBehaviour
         }
         else if(other.CompareTag("Player"))
         {
-            player.hitBack = 0;
+            if(player.hitBack >= 1)
+            {
+                player.hitBack = 0;
+
+            }
+
+            print("bam");
+
+            removePlayerHealth = true;
+           
             attacked = true;
             player.hitPlayer = true;
         }

@@ -84,6 +84,8 @@ public class NewMovement3D : MonoBehaviour
     //Switch
     public bool hitSwitch = false;
 
+ 
+
     void Start()
     {
         cc = GetComponent<CharacterController>();
@@ -96,15 +98,21 @@ public class NewMovement3D : MonoBehaviour
     {
         if(other.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy hit you");
-            
-            enemy = other.transform;
-
            
+
+            enemy = other.transform;
 
         }
     }
- 
+    private void LateUpdate()
+    {
+        if (hitPlayer)
+        {
+
+            TakeDamage();
+        }
+    }
+
     void Update()
     {
         hitButton();
@@ -120,10 +128,7 @@ public class NewMovement3D : MonoBehaviour
         JumpPickup();
 
 
-        if(hitPlayer)
-        {
-            TakeDamage();
-        }
+      
        
         
         cc.Move(velocity * Time.deltaTime);
@@ -506,12 +511,12 @@ public class NewMovement3D : MonoBehaviour
     void TakeDamage()
     {
 
-
+       
 
         hitBack += 3 * Time.deltaTime;
         if (enemy != null)
         {
-            print("hello");
+
             transform.position = Vector3.Lerp(transform.position, transform.position + (0.5f * enemy.transform.forward), hitBack);
         }
 

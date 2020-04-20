@@ -9,15 +9,24 @@ public class player_health : MonoBehaviour
     public int health;
     public int numOfHearts;
 
+    private bool isPlayerDead = false;
+
     public Image[] hearts;
     public Sprite fullHearts;
     public Sprite emptyHearts;
+
+    public RectTransform gameOverPanel;
+
+    public Text textGameOver;
+
 
     // Start is called before the first frame update
     void Start()
     {
         
     }
+
+    
 
     // Update is called once per frame
     void Update()
@@ -58,5 +67,20 @@ public class player_health : MonoBehaviour
     public void removeHealth()
     {
         health--;
+
+        //Check if player dies
+        
     }
+
+    public bool isAlive()
+    {
+        if(health < 0)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+
 }

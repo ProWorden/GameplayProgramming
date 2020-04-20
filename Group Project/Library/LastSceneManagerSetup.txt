@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Main Islands.unity
+- path: Assets/Scenes/FactorySplineScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

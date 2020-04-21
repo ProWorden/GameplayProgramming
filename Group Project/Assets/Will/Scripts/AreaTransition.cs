@@ -10,12 +10,15 @@ public class AreaTransition : MonoBehaviour
     GameObject sceneLoader;
     [SerializeField]
     string scene_to_load;
+    [SerializeField]
+    string spawn_to_use;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other == player)
         {
             sceneLoader.GetComponent<SceneLoaderScript>().LoadScene(scene_to_load);
+            globalControl.Instance.spawn_location = spawn_to_use;
         }
     }
     // Start is called before the first frame update

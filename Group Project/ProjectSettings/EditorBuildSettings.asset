@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Spline Scene.unity
     guid: a369f3fde92f4d2499d767df64a93e81
+  - enabled: 1
+    path: Assets/Scenes/FactorySplineScene.unity
+    guid: 35b5284edb00f7342bdb1a48619ebdae
   m_configObjects: {}

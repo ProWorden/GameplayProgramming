@@ -17,6 +17,7 @@ public class globalControl : MonoBehaviour
     public bool door_1;
     public bool door_2;
 
+    public string spawn_location;
     // doors?
 
     private void Awake()

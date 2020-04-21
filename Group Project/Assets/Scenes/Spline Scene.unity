@@ -1518,7 +1518,7 @@ PrefabInstance:
     - target: {fileID: 2561578404188367091, guid: f8a721d01c3cb2f4b89f0e673d607a69,
         type: 3}
       propertyPath: m_Name
-      value: SceneTransitionArea
+      value: CaveTransition
       objectReference: {fileID: 0}
     - target: {fileID: 2561578404188367094, guid: f8a721d01c3cb2f4b89f0e673d607a69,
         type: 3}
@@ -1533,7 +1533,7 @@ PrefabInstance:
     - target: {fileID: 2561578404188367094, guid: f8a721d01c3cb2f4b89f0e673d607a69,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.214838
+      value: -23.23
       objectReference: {fileID: 0}
     - target: {fileID: 2561578404188367094, guid: f8a721d01c3cb2f4b89f0e673d607a69,
         type: 3}
@@ -1589,6 +1589,31 @@ PrefabInstance:
         type: 3}
       propertyPath: scene_to_load
       value: Main Islands
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112740500504216621, guid: f8a721d01c3cb2f4b89f0e673d607a69,
+        type: 3}
+      propertyPath: spawn_to_use
+      value: CaveEntranceSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561578404188367093, guid: f8a721d01c3cb2f4b89f0e673d607a69,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 15.52444
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561578404188367093, guid: f8a721d01c3cb2f4b89f0e673d607a69,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.3664546
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561578404188367093, guid: f8a721d01c3cb2f4b89f0e673d607a69,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 3.5047493
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561578404188367093, guid: f8a721d01c3cb2f4b89f0e673d607a69,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.74762535
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a721d01c3cb2f4b89f0e673d607a69, type: 3}

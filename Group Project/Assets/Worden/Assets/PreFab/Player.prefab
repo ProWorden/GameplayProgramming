@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 7261276999743437195}
   - component: {fileID: 7261276999743437194}
   - component: {fileID: 7261276999743437191}
+  - component: {fileID: 5825841121454026659}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -372,20 +373,35 @@ MonoBehaviour:
   hitPlayer: 0
   mat1: {fileID: 2100000, guid: ad8c2bee857aaca4dbcf348b7e988a44, type: 2}
   mat2: {fileID: 2100000, guid: 01763a1c279a5cd4d8f897f6b6cdbae5, type: 2}
+  enemy: {fileID: 0}
   hitBack: 0
   velocityXZ: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   playerSpeed: 8
   playerAcceleration: 11
   inSpline: 0
+  headCollision: 0
   gravityMagnitude: -20
   grounded: 0
   jumpForce: 13
   jumpForceTwo: 13
   airTimer: 0
+  jumped: 0
   doubleJump: 0
   speedBoost: 0
   hitSwitch: 0
+--- !u!114 &5825841121454026659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261276999527251197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8886c3c49d2c52b4c8476adc7c9e90a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7261276999527251199
 GameObject:
   m_ObjectHideFlags: 0

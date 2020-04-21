@@ -5,14 +5,25 @@ using UnityEngine;
 public class PlatformSwitch2 : MonoBehaviour
 {
     public GameObject player;
+
+    public Camera playerCam;
+    public Camera cutscenceCam;
+
+    public Barrier barrier;
     public NewMovement3D playerScript;
     public bool switchOn = false;
     Renderer render;
     bool startTimer = false;
+    bool playCutscene = false;
     float timer = 0f;
+    bool done = false;
+
+    public float barrierTimer = 0;
+
     private void Start()
     {
         render = transform.GetComponent<Renderer>();
+        render.material.SetColor("_Color", Color.red);
     }
 
     void OnTriggerStay(Collider other)
@@ -21,7 +32,7 @@ public class PlatformSwitch2 : MonoBehaviour
         {
             startTimer = true;
             timer = 0f;
-            switchOn = !switchOn;
+            switchOn = true;
 
         }
 
@@ -32,25 +43,55 @@ public class PlatformSwitch2 : MonoBehaviour
 
     private void Update()
     {
-        if (startTimer && timer <= 0.4f)
+        if (startTimer)
         {
             timer += Time.deltaTime;
-        }
-        else
-        {
-            timer = 0.4f;
 
-            if (!switchOn)
+            if (timer >= 0.4f && !done)
             {
 
-                render.material.SetColor("_Color", Color.red);
+
+                if (switchOn)
+                {
+                    render.material.SetColor("_Color", Color.green);
+                    playerScript.enabled = false;
+
+                }
+             
+
+                if (timer >= 0.8)
+                {
+                    timer = 0.8f;
+                    playCutscene = true;
+                }
+            }
+        }
+
+    
+
+
+        if(playCutscene && !done)
+        {
+            
+            playerCam.enabled = false;
+            cutscenceCam.enabled = true;
+
+            barrier.removeBarrier();
+
+            if(barrierTimer >= 2.5)
+            {
+                playerScript.enabled = true;
+                playerCam.enabled = true;
+                cutscenceCam.enabled = false;
+                done = true;
             }
             else
             {
-
-                render.material.SetColor("_Color", Color.green);
+                barrierTimer += Time.deltaTime;
             }
-        }
 
+        }
     }
+
+ 
 }

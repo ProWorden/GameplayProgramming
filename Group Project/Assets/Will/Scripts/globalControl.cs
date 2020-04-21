@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class globalControl : MonoBehaviour
 {
+    public player_health player_hp_scr;
+    public player_coins player_coin_scr;
+
     public static globalControl Instance;
 
     public int numberOfHearts;
@@ -38,6 +41,9 @@ public class globalControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        numberOfHearts = player_hp_scr.numOfHearts;
+        playerHealth = player_hp_scr.health;
+
+        coins = player_coin_scr.coins;
     }
 }

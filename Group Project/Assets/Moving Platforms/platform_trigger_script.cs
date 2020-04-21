@@ -8,7 +8,7 @@ public class platform_trigger_script : MonoBehaviour
     public movingPlatformScript platform;
     private void OnTriggerEnter(Collider other)
     {
-        if (platform.current_target == platform.points[0])
+        if (platform.transform.position == platform.current_target)
         {
             platform.NextPlatform();
         }

@@ -3052,6 +3052,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2459453254551945007, guid: 672f5f7dcce25254ab639ca395d69522,
+        type: 3}
+      propertyPath: player_hp_scr
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2459453254551945007, guid: 672f5f7dcce25254ab639ca395d69522,
+        type: 3}
+      propertyPath: player_coin_scr
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6299916752047648245, guid: 672f5f7dcce25254ab639ca395d69522, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 672f5f7dcce25254ab639ca395d69522, type: 3}

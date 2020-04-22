@@ -31,6 +31,10 @@ public class globalControl : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        player_hp_scr.numOfHearts = numberOfHearts;
+        player_hp_scr.health = playerHealth;
+        player_coin_scr.coins = coins;
     }
 
     // Start is called before the first frame update

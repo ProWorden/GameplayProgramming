@@ -2834,12 +2834,12 @@ PrefabInstance:
         type: 3}
       propertyPath: player_hp_scr
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1273416152}
     - target: {fileID: 2459453254551945007, guid: 672f5f7dcce25254ab639ca395d69522,
         type: 3}
       propertyPath: player_coin_scr
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1273416151}
     m_RemovedComponents:
     - {fileID: 6299916752047648245, guid: 672f5f7dcce25254ab639ca395d69522, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 672f5f7dcce25254ab639ca395d69522, type: 3}
@@ -3452,7 +3452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coins: 0
-  coin_count: {fileID: 0}
+  coin_count: {fileID: 430252359}
 --- !u!114 &1273416152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5440,6 +5440,21 @@ PrefabInstance:
       propertyPath: scene_to_load
       value: Main Islands
       objectReference: {fileID: 0}
+    - target: {fileID: 8857190030473335648, guid: f8a721d01c3cb2f4b89f0e673d607a69,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857190030473335648, guid: f8a721d01c3cb2f4b89f0e673d607a69,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216612174251989204, guid: f8a721d01c3cb2f4b89f0e673d607a69,
+        type: 3}
+      propertyPath: m_Name
+      value: FactoryLeftSpawn
+      objectReference: {fileID: 0}
     - target: {fileID: 2561578404188367093, guid: f8a721d01c3cb2f4b89f0e673d607a69,
         type: 3}
       propertyPath: m_Size.x
@@ -5459,21 +5474,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: -0.74613476
-      objectReference: {fileID: 0}
-    - target: {fileID: 8857190030473335648, guid: f8a721d01c3cb2f4b89f0e673d607a69,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 8857190030473335648, guid: f8a721d01c3cb2f4b89f0e673d607a69,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.79
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216612174251989204, guid: f8a721d01c3cb2f4b89f0e673d607a69,
-        type: 3}
-      propertyPath: m_Name
-      value: FactoryLeftSpawn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a721d01c3cb2f4b89f0e673d607a69, type: 3}

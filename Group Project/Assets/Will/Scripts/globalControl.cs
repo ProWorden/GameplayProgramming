@@ -6,6 +6,7 @@ public class globalControl : MonoBehaviour
 {
     public player_health player_hp_scr;
     public player_coins player_coin_scr;
+    public Player_key player_key_scr;
 
     public static globalControl Instance;
 
@@ -35,6 +36,7 @@ public class globalControl : MonoBehaviour
         player_hp_scr.numOfHearts = numberOfHearts;
         player_hp_scr.health = playerHealth;
         player_coin_scr.coins = coins;
+        player_key_scr.hasKey = hasKey;
     }
 
     // Start is called before the first frame update

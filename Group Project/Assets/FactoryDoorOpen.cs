@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class FactoryDoorOpen : MonoBehaviour
 {
-    public Animation anim;
-    public globalControl GC;
+    
+    public Player_key player_key_scr;
     float timer = 0;
-    bool openingDoor = false;
+   public bool openingDoor = false;
+    public door door;
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player") && GC.hasKey)
+        if(other.gameObject.tag == "Player" && player_key_scr.hasKey)
         {
-            anim.Play();
-
+           
+            print("should open");
             openingDoor = true;
             
         }
+        
     }
 
     private void Update()
     {
-        if(openingDoor&& timer <=1)
+        if(openingDoor)
         {
-            timer += Time.deltaTime;
-            
-        }
-        else
-        {
-            anim.Stop();
+            door.removeDoor();
         }
     }
+
+
 }

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-     public globalControl saveData;
+     public Player_key keyScript;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             print("hey");
             Debug.Log("HIT!");
-            saveData.hasKey = true;
+            keyScript.hasKey = true;
             Destroy(this.gameObject);
         }
     }

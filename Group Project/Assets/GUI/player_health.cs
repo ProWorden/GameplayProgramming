@@ -13,6 +13,11 @@ public class player_health : MonoBehaviour
     public Sprite fullHearts;
     public Sprite emptyHearts;
 
+    [SerializeField]
+    GameObject sceneLoader;
+    [SerializeField]
+    string scene_to_load;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +54,11 @@ public class player_health : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
+
+        checkDeath();
+
+
+
     }
 
     public void addHealth(int health_to_add)
@@ -59,6 +69,16 @@ public class player_health : MonoBehaviour
     public void removeHealth()
     {
         health--;
+    }
+
+    public void checkDeath()
+    {
+        if (health <= 0)
+        {
+
+            sceneLoader.GetComponent<SceneLoaderScript>().LoadScene(scene_to_load);
+
+        }
     }
 
     private void OnDestroy()
